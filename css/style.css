@@ -477,6 +477,72 @@ p {
     margin-top: 1.25rem;
 }
 
+/* Socials embedded in hero */
+.hero-socials { margin-top: 1.25rem; }
+.hero-socials .socials-grid {
+    display: flex;
+    align-items: stretch;
+    gap: 0.75rem;
+    flex-wrap: nowrap; /* single line */
+    overflow-x: auto; /* handle small screens gracefully */
+    padding-bottom: 0.25rem; /* space for potential scrollbar */
+}
+.hero-socials .social-card {
+    min-height: auto;
+    padding: 0.25rem 0.25rem;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+}
+
+/* Icons only in hero socials */
+.hero-socials .social-info { display: none; }
+
+/* =====================
+   Modern animations
+   ===================== */
+/* Generic reveal animation (JS will toggle .show) */
+.reveal {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: opacity, transform;
+}
+.reveal.show { opacity: 1; transform: none; }
+
+/* Subtle halo pulse around avatar */
+@keyframes halo-pulse {
+    0%, 100% {
+        box-shadow:
+            0 0 0 2px color-mix(in oklab, var(--primary-color) 60%, transparent),
+            0 0 45px 8px color-mix(in oklab, var(--primary-color) 34%, transparent),
+            0 0 120px 24px color-mix(in oklab, var(--secondary-color) 22%, transparent),
+            0 10px 30px rgba(0,0,0,0.12);
+    }
+    50% {
+        box-shadow:
+            0 0 0 2px color-mix(in oklab, var(--primary-color) 65%, transparent),
+            0 0 55px 10px color-mix(in oklab, var(--primary-color) 40%, transparent),
+            0 0 140px 28px color-mix(in oklab, var(--secondary-color) 28%, transparent),
+            0 14px 34px rgba(0,0,0,0.14);
+    }
+}
+.image-container { animation: halo-pulse 6s ease-in-out infinite; }
+
+/* Tilt-ready items (JS-enhanced) */
+.tiltable {
+    transform-style: preserve-3d;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    will-change: transform;
+}
+.tiltable .tilt-inner { transform: translateZ(20px); }
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+    .image-container { animation: none !important; }
+}
+
 .hero-image {
     display: flex;
     justify-content: center;
@@ -486,18 +552,31 @@ p {
 
 .image-container {
     width: 100%;
-    max-width: 520px;
+    max-width: 420px;
     position: relative;
+    aspect-ratio: 1 / 1; /* keep it square */
+    border-radius: 50%;
+    overflow: hidden; /* crop image to circle */
+    /* outer ring */
+    border: 4px solid var(--bg-card);
+    box-shadow:
+        /* thin colored ring just outside the border */
+        0 0 0 2px color-mix(in oklab, var(--primary-color) 60%, transparent),
+        /* soft halo */
+        0 0 45px 8px color-mix(in oklab, var(--primary-color) 40%, transparent),
+        /* deeper glow */
+        0 0 120px 24px color-mix(in oklab, var(--secondary-color) 28%, transparent),
+        /* subtle elevation */
+        0 10px 30px rgba(0,0,0,0.12);
 }
 
 .hero-avatar {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
-    filter: drop-shadow(0 12px 24px rgba(139, 92, 246, 0.25)) drop-shadow(0 6px 14px rgba(236, 72, 153, 0.15));
-    animation: avatar-float 6s ease-in-out infinite;
-    border-radius: 12px;
     object-fit: cover;
+    border-radius: 50%;
+    animation: avatar-float 6s ease-in-out infinite;
 }
 
 @keyframes avatar-float {
@@ -555,6 +634,74 @@ section {
     max-width: 600px;
     margin: 0 auto;
 }
+
+/* Socials Section */
+.socials {
+    background: var(--bg-secondary);
+}
+
+.socials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+}
+
+.social-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    min-height: 140px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    text-decoration: none;
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.social-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: color-mix(in oklab, var(--primary-color) 35%, var(--border-color));
+}
+
+.social-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    color: var(--text-primary);
+    font-size: 1.4rem;
+}
+
+.social-info h3 {
+    margin: 0;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    text-align: center;
+}
+
+.social-info span { display: none; }
+
+/* Brand color accents for social icons (official palettes) */
+.social-icon.brand-linkedin { background: #0A66C2; border-color: #0A66C2; color: #ffffff; }
+.social-icon.brand-github   { background: #24292e; border-color: #24292e; color: #ffffff; }
+.social-icon.brand-kaggle   { background: #20BEFF; border-color: #20BEFF; color: #ffffff; }
+.social-icon.brand-datacamp { background: #03EF62; border-color: #03EF62; color: #0b1b13; }
+.social-icon.brand-x        { background: #000000; border-color: #000000; color: #ffffff; }
+.social-icon.brand-twitter  { background: #1DA1F2; border-color: #1DA1F2; color: #ffffff; }
+
+/* Ensure icon glyph inside brand badges inherits white/dark color */
+.social-icon i { color: inherit; }
 
 /* About Section */
 .about {
@@ -683,28 +830,40 @@ section {
     align-items: center;
     gap: 1rem;
     transition: transform var(--transition-base);
+    /* Apply featured-like styling to all skills */
+    border: 2px solid var(--primary-color);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.10), transparent);
 }
-[data-theme="dark"] .skill-item { background: rgba(30,41,59,0.55); }
+[data-theme="dark"] .skill-item {
+    background: linear-gradient(135deg,
+        color-mix(in oklab, var(--primary-color) 22%, transparent),
+        rgba(30,41,59,0.45)
+    );
+}
 
 .skill-item:hover {
     transform: translateY(-5px);
 }
 
-.skill-item.featured {
-    border: 2px solid var(--primary-color);
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), transparent);
-}
+/* .skill-item.featured no longer needed since all skill items share the same style */
 
 .skill-icon {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: var(--gradient-primary);
+   
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-primary);
     font-size: 1.5rem;
+}
+/* Scale inline SVG/img icons nicely inside the circular container */
+.skill-icon img,
+.skill-icon svg {
+    max-width: 70%;
+    max-height: 70%;
+    display: block;
 }
 
 .skill-info {
@@ -795,6 +954,11 @@ section {
     background: var(--bg-secondary);
 }
 
+/* Education section uses the same background/design as Experience */
+.education {
+    background: var(--bg-secondary);
+}
+
 .timeline {
     position: relative;
     list-style: none;
@@ -839,6 +1003,7 @@ section {
     border-radius: 0.75rem;
     padding: 1rem 1.25rem;
     box-shadow: var(--shadow-sm);
+    position: relative; /* anchor for bottom-right logos */
 }
 [data-theme="dark"] .timeline-content {
     background: rgba(30, 41, 59, 0.55);
@@ -864,6 +1029,35 @@ section {
 .timeline-bullets {
     margin: 0.25rem 0 0 1rem;
     color: var(--text-secondary);
+}
+
+/* Bottom-right logos in Experience cards */
+.timeline-logo {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.timeline-logo img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+    display: block;
+}
+
+[data-theme="dark"] .timeline-logo {
+    background: rgba(30,41,59,0.75);
+    border-color: rgba(148,163,184,0.2);
 }
 
 /* Skills badges in Experience */

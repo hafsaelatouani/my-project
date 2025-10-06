@@ -70,6 +70,77 @@ if (typeof AOS !== 'undefined') {
   }));
 })();
 
+// Auto reveal on scroll (adds .reveal and toggles .show when intersecting)
+(function autoReveal() {
+  const candidates = [
+    '.timeline-item',
+    '.skill-item',
+    '.project-card',
+    '.contact-card',
+    '.contact-form-container',
+    '.certifications',
+    '.section-header'
+  ];
+
+  const nodes = document.querySelectorAll(candidates.join(','));
+  if (!nodes.length) return;
+
+  nodes.forEach(el => el.classList.add('reveal'));
+
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+
+// Subtle 3D tilt on hover for cards/items
+(function tiltEnhance() {
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  if (reduce || isTouch) return;
+
+  const SELECTORS = [
+    '.project-card',
+    '.skill-item',
+    '.contact-card',
+    '.timeline-content',
+  ];
+
+  const els = document.querySelectorAll(SELECTORS.join(','));
+  els.forEach(el => {
+    el.classList.add('tiltable');
+    let raf = 0;
+    const onMove = (e) => {
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) / (rect.width / 2);
+      const dy = (e.clientY - cy) / (rect.height / 2);
+      const maxDeg = 6;
+      const rx = (-dy * maxDeg);
+      const ry = (dx * maxDeg);
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        el.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+        el.style.boxShadow = `0 18px 30px -12px rgba(0,0,0,0.25)`;
+      });
+    };
+    const onLeave = () => {
+      cancelAnimationFrame(raf);
+      el.style.transform = '';
+      el.style.boxShadow = '';
+    };
+    el.addEventListener('mousemove', onMove);
+    el.addEventListener('mouseleave', onLeave);
+  });
+})();
+
 // i18n: EN/FR translations and toggle
 (function i18nModule() {
   const dict = {
@@ -93,6 +164,35 @@ if (typeof AOS !== 'undefined') {
       'skills.subtitle': 'Expertise in modern BI and data analytics tools',
       'tech.title': 'Technical Skills',
       'tech.subtitle': 'Core platforms, languages, and tools I use daily',
+      // New: Education & other headings
+      'education.title': 'Academic background and qualifications',
+      'certs.title': 'Professional Certifications',
+      'soft.title': 'Soft Skills',
+      'soft.critical': 'Critical Thinking',
+      'soft.leadership': 'Leadership (GDSC)',
+      'soft.collaboration': 'Collaboration (JLM)',
+      // Skills categories
+      'skills.cat.bi': 'BI & Analytics',
+      'skills.cat.prog': 'Programming',
+      'skills.cat.platforms': 'Platforms',
+      // Project titles
+      'projects.dalkia.title': 'Dalkia Dashboard - EDF Group',
+      'projects.farmer.title': 'Farmer Analytics Dashboard - OCP Africa',
+      'projects.supply.title': 'Supply Chain Dashboard - OCP Africa',
+      'projects.marketing.title': 'Marketing Campaign Analysis Dashboard - Sopriam',
+      'projects.itsm.title': 'ITSM Dashboard - OCP Group',
+      'projects.it.title': 'IT Dashboard - OCP Group',
+      // Education entries
+      'edu.miage.title': "Master's in Applied Computer Methods for Business Management (MIAGE)",
+      'edu.miage.school': "Côte d'Azur University",
+      'edu.emsi.title': 'Engineering program in Applied Computer Methods for Business Management',
+      'edu.emsi.school': 'Moroccan School of Engineering Sciences',
+      'edu.bts.title': 'Degree in Information Systems Development',
+      'edu.bts.school': 'IBN SINA (BTS)',
+      'edu.bachelor.title': "Bachelor's in Mathematical Sciences and Computer Science",
+      'edu.bachelor.school': 'IBN TOFAIL University',
+      // Footer
+      'footer.copy': '© {year} hafsaelatouani',
       'projects.title': 'Featured Projects',
       'projects.subtitle': 'Showcasing impactful BI solutions and data analytics projects',
       'filters.all': 'All Projects',
@@ -194,6 +294,35 @@ if (typeof AOS !== 'undefined') {
       'skills.subtitle': 'Expertise en outils BI et data analytics modernes',
       'tech.title': 'Stack Technique',
       'tech.subtitle': 'Plateformes, langages et outils utilisés au quotidien',
+      // New: Education & other headings
+      'education.title': 'Parcours académique et diplômes',
+      'certs.title': 'Certifications professionnelles',
+      'soft.title': 'Compétences comportementales',
+      'soft.critical': 'Esprit critique',
+      'soft.leadership': 'Leadership (GDSC)',
+      'soft.collaboration': 'Collaboration (JLM)',
+      // Skills categories
+      'skills.cat.bi': 'BI & Analytics',
+      'skills.cat.prog': 'Programmation',
+      'skills.cat.platforms': 'Plateformes',
+      // Project titles
+      'projects.dalkia.title': 'Tableau de bord Dalkia - Groupe EDF',
+      'projects.farmer.title': 'Tableau de bord Farmer Analytics - OCP Africa',
+      'projects.supply.title': "Tableau de bord Supply Chain - OCP Africa",
+      'projects.marketing.title': 'Analyse de campagnes marketing - Sopriam',
+      'projects.itsm.title': 'Tableau de bord ITSM - Groupe OCP',
+      'projects.it.title': 'Tableau de bord IT - Groupe OCP',
+      // Education entries
+      'edu.miage.title': "Master MIAGE (Méthodes Informatiques Appliquées à la Gestion)",
+      'edu.miage.school': "Université Côte d'Azur",
+      'edu.emsi.title': "Cycle d'ingénierie en MIAGE",
+      'edu.emsi.school': "École Marocaine des Sciences de l'Ingénieur (EMSI)",
+      'edu.bts.title': 'Diplôme en Développement des Systèmes d’Information',
+      'edu.bts.school': 'IBN SINA (BTS)',
+      'edu.bachelor.title': 'Licence en Sciences Mathématiques et Informatique',
+      'edu.bachelor.school': 'Université Ibn Tofaïl',
+      // Footer
+      'footer.copy': '© {year} hafsaelatouani',
       'projects.title': 'Projets phares',
       'projects.subtitle': 'Des solutions BI et analytiques à fort impact',
       'filters.all': 'Tous les projets',
@@ -280,8 +409,13 @@ if (typeof AOS !== 'undefined') {
     const strings = dict[lang] || dict.en;
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
-      const val = strings[key];
+      let val = strings[key];
       if (!val) return;
+      // Placeholder replacements (e.g., {year})
+      try {
+        const nowYear = new Date().getFullYear();
+        val = val.replace(/\{year\}/g, nowYear);
+      } catch (_) { /* noop */ }
       const tag = el.tagName.toLowerCase();
       if (tag === 'input' || tag === 'textarea') {
         el.setAttribute('placeholder', val);
@@ -424,18 +558,34 @@ if (typeof AOS !== 'undefined') {
   const cards = document.querySelectorAll('.project-card');
   if (!buttons.length || !cards.length) return;
 
+  const aliases = {
+    powerbi: ['powerbi', 'power-bi', 'power_bi', 'microsoft-power-bi'],
+    analytics: ['analytics', 'oracle', 'oracle-analytics', 'oac']
+  };
+
+  const matchesFilter = (card, filter) => {
+    if (filter === 'all') return true;
+    const f = (filter || '').toLowerCase();
+    const candidates = new Set([f, ...(aliases[f] || [])]);
+    // Gather tokens from classList and optional data-category
+    const classTokens = Array.from(card.classList).map(c => c.toLowerCase());
+    const dataCat = (card.getAttribute('data-category') || '').toLowerCase();
+    const haystack = new Set([...classTokens, dataCat]);
+    // check intersection
+    for (const c of candidates) {
+      if (c && (haystack.has(c) || classTokens.some(t => t.includes(c)))) return true;
+    }
+    return false;
+  };
+
   buttons.forEach(btn => btn.addEventListener('click', () => {
     const filter = btn.getAttribute('data-filter');
     buttons.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 
     cards.forEach(card => {
-      if (filter === 'all') {
-        card.style.display = '';
-      } else {
-        const show = card.classList.contains(filter);
-        card.style.display = show ? '' : 'none';
-      }
+      const show = matchesFilter(card, filter);
+      card.style.display = show ? '' : 'none';
     });
   }));
 })();

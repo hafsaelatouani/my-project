@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Tableau">
+  <rect width="64" height="64" rx="14" fill="white"/>
+  <g transform="translate(32,32)">
+    <!-- central blue plus -->
+    <g fill="#1F4E79">
+      <rect x="-1.5" y="-10" width="3" height="20" rx="1.5"/>
+      <rect x="-10" y="-1.5" width="20" height="3" rx="1.5"/>
+    </g>
+    <!-- top orange -->
+    <g transform="translate(0,-12)" fill="#F28E2B">
+      <rect x="-1.2" y="-6" width="2.4" height="12" rx="1.2"/>
+      <rect x="-6" y="-1.2" width="12" height="2.4" rx="1.2"/>
+    </g>
+    <!-- right teal -->
+    <g transform="translate(12,0)" fill="#4EAA97">
+      <rect x="-1.2" y="-6" width="2.4" height="12" rx="1.2"/>
+      <rect x="-6" y="-1.2" width="12" height="2.4" rx="1.2"/>
+    </g>
+    <!-- bottom red -->
+    <g transform="translate(0,12)" fill="#E15759">
+      <rect x="-1.2" y="-6" width="2.4" height="12" rx="1.2"/>
+      <rect x="-6" y="-1.2" width="12" height="2.4" rx="1.2"/>
+    </g>
+    <!-- left light blue -->
+    <g transform="translate(-12,0)" fill="#76B7B2">
+      <rect x="-1.2" y="-6" width="2.4" height="12" rx="1.2"/>
+      <rect x="-6" y="-1.2" width="12" height="2.4" rx="1.2"/>
+    </g>
+    <!-- diagonal small marks -->
+    <g transform="translate(8,-8)" fill="#59A14F">
+      <rect x="-0.9" y="-4.5" width="1.8" height="9" rx="0.9"/>
+      <rect x="-4.5" y="-0.9" width="9" height="1.8" rx="0.9"/>
+    </g>
+    <g transform="translate(8,8)" fill="#EDC948">
+      <rect x="-0.9" y="-4.5" width="1.8" height="9" rx="0.9"/>
+      <rect x="-4.5" y="-0.9" width="9" height="1.8" rx="0.9"/>
+    </g>
+    <g transform="translate(-8,8)" fill="#B07AA1">
+      <rect x="-0.9" y="-4.5" width="1.8" height="9" rx="0.9"/>
+      <rect x="-4.5" y="-0.9" width="9" height="1.8" rx="0.9"/>
+    </g>
+    <g transform="translate(-8,-8)" fill="#4E79A7">
+      <rect x="-0.9" y="-4.5" width="1.8" height="9" rx="0.9"/>
+      <rect x="-4.5" y="-0.9" width="9" height="1.8" rx="0.9"/>
+    </g>
+  </g>
+</svg>

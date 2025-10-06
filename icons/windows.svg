@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Windows">
+  <rect width="64" height="64" rx="14" fill="white"/>
+  <g fill="#00A4EF">
+    <path d="M8 14l22-3v21H8V14z"/>
+    <path d="M34 10l22-3v24H34V10z"/>
+    <path d="M8 33h22v20l-22-3V33z"/>
+    <path d="M34 33h22v23l-22-3V33z"/>
+  </g>
+</svg>

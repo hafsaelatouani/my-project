@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Microsoft SQL Server">
+  <rect width="64" height="64" rx="14" fill="white"/>
+  <!-- stylized red ribbon swirl reminiscent of SQL Server logo -->
+  <path d="M10 46c8-2 18-6 26-12 7-5 12-11 18-20 0 0-8 2-16 7-7 4-14 10-20 17-3 4-6 8-8 8z" fill="#CC0200" opacity="0.85"/>
+  <path d="M12 52c10-1 22-5 30-11 6-5 10-10 10-10s-6 2-12 6c-7 4-16 9-28 13z" fill="#E3000F" opacity="0.9"/>
+</svg>

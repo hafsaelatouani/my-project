@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Google Analytics">
+  <defs>
+    <linearGradient id="gaGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FCD34D"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="gaGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FB8C00"/>
+      <stop offset="100%" stop-color="#F57C00"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="white"/>
+  <!-- Left short bar -->
+  <rect x="12" y="36" width="14" height="16" rx="8" fill="url(#gaGrad)"/>
+  <!-- Middle bar -->
+  <rect x="28" y="26" width="14" height="26" rx="8" fill="url(#gaGrad)"/>
+  <!-- Right tall bar -->
+  <rect x="44" y="14" width="14" height="38" rx="8" fill="url(#gaGrad2)"/>
+</svg>
