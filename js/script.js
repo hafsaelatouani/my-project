@@ -239,6 +239,10 @@ if (typeof AOS !== 'undefined') {
       'projects.oracle.desc': 'Oracle Analytics Cloud dashboard projects showcasing data visualization, predictive analytics, and enterprise-level reporting solutions are under development and coming soon.',
       
       // Experience bullets
+      'exp.dawamaghreb.title': 'Data Analyst — Dawamaghreb',
+      'exp.dawamaghreb.b1': 'Design and automate Power BI dashboards to monitor sales, stock levels, and regional demand trends.',
+      'exp.dawamaghreb.b2': 'Analyze medical and sales data to identify prescribing patterns and market insights, supporting strategic planning.',
+      'exp.dawamaghreb.b3': 'Enable data-driven decisions for supply optimization and marketing initiatives.',
       'exp.freelance.b1': 'Design interactive BI dashboards (Power BI/Tableau) to support decision‑making.',
       'exp.freelance.b2': 'Model and transform data, integrate SQL Server and ETL workflows.',
       'exp.freelance.title': 'Data Analyst — Freelance',
@@ -255,7 +259,7 @@ if (typeof AOS !== 'undefined') {
       'exp.ocp.b2': 'Used Matplotlib and Seaborn for exploratory analysis and reporting.',
       'exp.ocp.title': 'Data Analyst Intern — OCP Group',
       'exp.dejla.b1': 'Developed a sales website with PHP, HTML, JavaScript, MySQL; from concept to delivery.',
-      'exp.dejla.title': 'Full‑Stack Developer Intern — DEJLA FER',
+      'exp.dejla.title': 'FullStack Developer Intern — DEJLA FER',
       'contact.title': 'Get In Touch',
       'contact.subtitle': "Let's discuss your next data analytics project",
       'contact.email': 'Email',
@@ -323,8 +327,7 @@ if (typeof AOS !== 'undefined') {
       'edu.bachelor.school': 'Université Ibn Tofaïl',
       // Footer
       'footer.copy': '© {year} hafsaelatouani',
-      'projects.title': 'Projets phares',
-      'projects.subtitle': 'Des solutions BI et analytiques à fort impact',
+      'projects.title': 'Projets ',
       'filters.all': 'Tous les projets',
       'filters.powerbi': 'Power BI',
       'filters.tableau': 'Tableau',
@@ -369,6 +372,10 @@ if (typeof AOS !== 'undefined') {
       'projects.oracle.desc': "Projets Oracle Analytics Cloud présentant la visualisation de données, l'analytique prédictive et des solutions de reporting d'entreprise en cours de développement.",
       
       // Experience bullets
+      'exp.dawamaghreb.title': 'Analyste de Données — Dawamaghreb',
+      'exp.dawamaghreb.b1': 'Conception et automatisation de tableaux de bord Power BI pour surveiller les ventes, les stocks et les tendances régionales.',
+      'exp.dawamaghreb.b2': 'Analyse des données médicales et commerciales pour identifier les tendances de prescription et les insights de marché.',
+      'exp.dawamaghreb.b3': 'Support à la planification stratégique et optimisation de l\'approvisionnement via l\'analyse de données.',
       'exp.freelance.b1': 'Conception de tableaux de bord BI (Power BI/Tableau) pour la prise de décision.',
       'exp.freelance.b2': 'Modélisation et transformation des données, intégration SQL Server et ETL.',
       'exp.freelance.title': 'Data Analyst — Freelance',
